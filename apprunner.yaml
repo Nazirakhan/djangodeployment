@@ -3,11 +3,16 @@ runtime: python311
 build:
   commands:
     build:
+      - echo "===== BUILD PHASE START ====="
+      - echo "Current directory:" && pwd
+      - echo "Files:" && ls -al
       - python3.11 -m pip install --upgrade pip
       - python3.11 -m pip install -r requirements.txt
+      - echo "Installed packages:" && python3.11 -m pip list
       - chmod +x startup.sh
+      - echo "===== BUILD PHASE END ====="
 run:
   runtime-version: 3.11.12
-  command: /bin/bash ./startup.sh  # Absolute path to bash
+  command: /bin/bash ./startup.sh
   network:
     port: 8000
