@@ -1,15 +1,16 @@
 version: 1.0
 runtime: python311
+
 build:
   commands:
     build:
-      - echo "===== FORCE INSTALLING DEPENDENCIES ====="
-      - python3.11 -m pip install --force-reinstall -r requirements.txt
-      - echo "===== VERIFICATION ====="
-      - python3.11 -m pip list
+      - echo "Installing requirements..."
+      - pip3 install --no-cache-dir -r requirements.txt
+      - echo "Installed packages..."
+      - pip3 list
       - chmod +x startup.sh
+
 run:
-  runtime-version: 3.11.12
-  command: /bin/bash ./startup.sh
+  command: ./startup.sh
   network:
     port: 8000
