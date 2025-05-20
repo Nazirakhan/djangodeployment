@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Run migrations (optional but useful)
-python manage.py migrate --noinput
+# Run migrations
+python3 manage.py migrate --noinput
 
 # Collect static files
-python manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 
-# Start gunicorn with proper host and port binding
-gunicorn deployment.wsgi:application --workers 2 --bind 0.0.0.0:$PORT
+# Start gunicorn explicitly using the Python module path
+python3 -m gunicorn deployment.wsgi:application --workers 2 --bind 0.0.0.0:$PORT
